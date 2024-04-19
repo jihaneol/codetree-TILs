@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String word = sc.next();
         String remove_word = sc.next();
-
+        while(word.contains(remove_word))
         word = word.replaceAll(remove_word, "");
         System.out.print(word);
     }
