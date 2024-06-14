@@ -1,43 +1,55 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static final int MAX_N = 501;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-    public static int n, m;
-    public static int[][] arr = new int[MAX_N][MAX_N];
-    public static int[][] dp = new int[MAX_N][MAX_N];
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // 배열의 행과 열 크기를 입력받습니다.
-        n = sc.nextInt();
-        m = sc.nextInt();
-
-        // 배열의 각 원소를 입력받습니다.
-        for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= m; j++) {
-                arr[i][j] = sc.nextInt();
+        int[][] map = new int[N][M];
+        
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        int ans = 0; // 정답을 저장할 변수를 초기화합니다.
+        int maxSquareSize = Math.min(N, M);
+        int largestArea = 0;
 
-        // 각 배열의 원소에 대하여 연산을 수행합니다.
-        for(int i = 1; i <= n; i++) {
-            for(int j = 1; j <= m; j++) {
-                // 현재 원소가 0이 아닌 경우에 대하여 연산을 수행합니다.
-                if(arr[i][j] != 0) {
-                    // 현재 위치의 왼쪽, 위, 왼쪽 위 대각선의 dp값 중 가장 작은 값에 1을 더한 값을 현재 위치에 저장합니다.
-                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+        for (int size = maxSquareSize; size >= 1; size--) {
+            if (canFindSquare(map, N, M, size)) {
+                largestArea = size * size;
+                break;
+            }
+        }
 
-                    // 최댓값을 갱신합니다.
-                    ans = Math.max(dp[i][j], ans);
+        System.out.println(largestArea);
+    }
+
+    private static boolean canFindSquare(int[][] map, int N, int M, int size) {
+        for (int i = 0; i <= N - size; i++) {
+            for (int j = 0; j <= M - size; j++) {
+                if (isSquare(map, i, j, size)) {
+                    return true;
                 }
             }
         }
+        return false;
+    }
 
-        // 정답의 제곱을 출력합니다.
-        System.out.println(ans * ans);
+    private static boolean isSquare(int[][] map, int row, int col, int size) {
+        for (int i = row; i < row + size; i++) {
+            for (int j = col; j < col + size; j++) {
+                if (map[i][j] == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
