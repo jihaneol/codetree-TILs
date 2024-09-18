@@ -8,8 +8,9 @@ public class Main {
         if(a%2!=0){
             a+=3;
         }
-
-        print(a/3);
+        if(a%3==0)
+            a/=3;
+        print(a);
         
     }
     public static <T> void print(T value){
