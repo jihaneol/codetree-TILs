@@ -8,7 +8,7 @@ public class Main {
             arr[i] = sc.nextInt();
         }
         for(int i=0; i<2; i++){
-            for(int j=i; j<2; j++){
+            for(int j=0; j<2-i; j++){
                 if(arr[j]>arr[j+1]){
                     int temp = arr[j];
                     arr[j] = arr[j+1];
