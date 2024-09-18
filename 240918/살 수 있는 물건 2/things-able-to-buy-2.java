@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
 
-        print(a>=3000?"book": a>=1000?"mask":a>=500:"pen":"no");
+        print(a>=3000?"book": a>=1000?"mask":a>=500?"pen":"no");
         
     }
     public static <T> void print(T value){
