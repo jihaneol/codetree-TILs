@@ -5,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
 
-        for(int i=1; i<=3; i++){
+        for(int i=1; i<=a; i++){
             print(i+" ");
         }
         // int[] arr = new int[3];
