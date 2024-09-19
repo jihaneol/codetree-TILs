@@ -6,7 +6,7 @@ public class Main {
         int n = sc.nextInt();
         while(n-->0){
             int x = sc.nextInt();
-            if(x%3==0){
+            if(x%3==0 && x%2!=0){
                 System.out.println(x);
             }
         }
